@@ -1,3 +1,5 @@
+#ifndef finalproject_hpp
+#define finalproject_hpp
 #include<iostream>
 #include <string>
 using namespace std;
@@ -93,6 +95,12 @@ void Data::calcScores(int,string name[],float score[],float total,float average,
 				cout << "input "<<name[i]<<"'s retest's score = ";
 				cin>>retestScore[i];
 				
+				while(retestScore[i]>100 || retestScore[i]<0)
+				{
+					cout << "input "<<name[i]<<"'s retest's score (0-100) = ";
+					cin>>retestScore[i];
+				}
+				
 				if(retestScore[i]<score[i])
 				retestScore[i]=score[i];
 				
@@ -114,6 +122,12 @@ void Data::calcScores(int,string name[],float score[],float total,float average,
 			{
 				cout << "Please input " << name[i] << "'s remedy score =";
 				cin >>remedyScore[i];
+				
+				while(remedyScore[i]>100 || remedyScore[i]<0)
+				{
+					cout << "Please input " << name[i] << "'s remedy score (0-100) =";
+					cin >>remedyScore[i];
+				}
 
 				if(remedyScore[i]<score[i])
 				remedyScore[i]=score[i];
@@ -179,6 +193,12 @@ void Data::calcScores2(int,string name[],float score2[],float total2,float avera
 				cout << "input "<<name[i]<<"'s retest's score = ";
 				cin>>retestScore2[i];
 				
+				while(retestScore2[i]>100 || retestScore2[i]<0)
+				{
+					cout << "input "<<name[i]<<"'s retest's score (0-100) = ";
+					cin>>retestScore2[i];
+				}
+				
 				if(retestScore2[i]<score2[i])
 				retestScore2[i]=score2[i];
 				
@@ -199,6 +219,12 @@ void Data::calcScores2(int,string name[],float score2[],float total2,float avera
 			{
 				cout << "Please input " << name[i] << "'s remedy score =";
 				cin >>remedyScore2[i];
+				
+				while(remedyScore2[i]>100 || remedyScore2[i]<0)
+				{
+					cout << "Please input " << name[i] << "'s remedy score (0-100) =";
+					cin >>remedyScore2[i];
+				}
 
 				if(remedyScore2[i]<score2[i])
 				remedyScore2[i]=score2[i];
@@ -301,65 +327,8 @@ void Data :: reportScore(int,float finalMidScore[],float mean[],float midScore[]
 		finalMidScore [i]= 0.3*mean[i]+0.7*midScore[i] ; 
 	
 		cout<<"name\t"<<"Average Score\t"<<"Mid Score\t"<<"Score For Now"<<endl<<endl;
-		cout<<name[i]<<"\t"<<mean[i]<<"\t\t"<<midScore[i]<<"\t\t"<<finalMidScore[i]<<endl;
+		cout<<name[i]<<"\t"<<mean[i]<<"\t"<<midScore[i]<<finalMidScore[i]<<endl;
 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-int main()
-{
-	int humans ;
-	int num=20;
-	string namee[num] ;
-	float score[num],average,remedyScore[num],retestScore[num],total;
-	float score2[num],average2,remedyScore2[num],retestScore2[num],total2,mean[num];
-	float score3[num],average3,retestScore3[num],total3,midScore[num],finalMidScore[num];
-	
-	Data input;
-	
-	cout << "Enter number of students (max 20) = ";
-	cin >> humans ;
-	
-	while(humans > num)
-	{
-		cout << "Enter number of students (max 20) = ";
-		cin >> humans ;		
-	}
-	
-	cout<<endl;
-	
-	input.setStudents(humans);
-	
-	for (int i=0 ; i<input.getStudents() ; i++) // to know students's names
-	{
-		cout << "Enter student "<<i+1<<"'s name = " ;
-		cin >> namee[i] ;
-		
-		input.setName(namee[i]);
-	}
-	cout<<endl ;
-	
-	cout <<"1st test"<<endl ;
-	cout<<"------------"<<endl ;
-	input.calcScores(input.getStudents(),namee,score,total,average,retestScore,remedyScore);
-	
-	cout<<"==============================================================================="<<endl;
-	
-	cout <<"2nd test"<<endl ;
-	cout<<"------------"<<endl ;
-	input.calcScores2(input.getStudents(),namee,score2,total2,average2,retestScore2,remedyScore2);
-	
-	cout<<"==============================================================================="<<endl;
-	
-	input.countAv(score,score2,mean,namee);
-	
-	cout<<"==============================================================================="<<endl;
-	
-	input.midTerm(input.getStudents(),namee,score3,total3,average3,retestScore3,midScore);
-	
-	input.reportScore(input.getStudents(),finalMidScore,mean,midScore, namee);
-
-return 0 ;
-}
-
+#endif /*finalproject_hpp*/
